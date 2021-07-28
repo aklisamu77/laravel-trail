@@ -23,9 +23,22 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Link</a>
-      </li>
+        @if (Auth::check())
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('product')}}">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('category')}}">Categories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('logout')}}">Logout</a>
+            </li>
+        @else
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('login')}}">Login</a>
+            </li>
+        @endif
+      
       <li class="nav-item">
         <a class="nav-link disabled" href="#">Disabled</a>
       </li>

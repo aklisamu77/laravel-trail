@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\File;
 use Session;
-
+//use Illuminate\Support\Facades\Hash;
 
 use App\Models\Product;
 use App\Models\Category;
@@ -22,12 +22,30 @@ class ProductController extends Controller
     public function index($currentPage=1)
     {
         //
-        $products = Product::orderBy('id', 'desc')->paginate(3,['*'], 'page',$currentPage);
+        //echo Hash::make('123');
+        $products = Product::orderBy('id', 'desc')->paginate(12,['*'], 'page',$currentPage);
         $categories = Category::get();
         $vendors = Vendor::get();
         //dd($vendors);
         
         return view('products.index' , [
+                                        "page_route"=>'product',
+                                        "products"=>$products,
+                                        "categories"=>$categories,
+                                        "vendors"=>$vendors]);
+    }
+    
+    public function categoryShow($category_id,$currentPage=1){
+        //
+        $selected_category = Category::find($category_id);
+        $products = $selected_category->products()->orderBy('id', 'desc')->paginate(3,['*'], 'page',$currentPage);
+        //dd(Category::find($category_id)->id);
+        $categories = Category::get();
+        $vendors = Vendor::get();
+        //dd($vendors);
+        
+        return view('products.category' , [
+                                        "category"=>$selected_category,
                                         "products"=>$products,
                                         "categories"=>$categories,
                                         "vendors"=>$vendors]);

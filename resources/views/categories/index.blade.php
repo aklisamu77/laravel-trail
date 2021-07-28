@@ -66,6 +66,7 @@
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Comment</th>
+                    <th scope="col">Num. products</th>
                     <th scope="col" style=" width: 25%; ">Handle</th>
                   </tr>
                 </thead>
@@ -76,6 +77,7 @@
                     <th scope="row">{{ ($cats->currentPage()-1)*5 + $loop->iteration	 }}</th>
                     <td>{{ $category->cat_name }}</td>
                     <td>{{ $category->comments }}</td>
+                    <td><a href="{{ route('product.category',$category->id) }}">{{ count($category->products) }}</a></td>
                     <td class="actions">
                         <form method="post" action="{{ route('category.destroy',$category->id) }}">
                             @csrf

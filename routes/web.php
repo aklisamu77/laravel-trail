@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CalcController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,9 +39,10 @@ Route::prefix('category')->group(function (){
 });
 
 // Product
-Route::prefix('product')->group(function (){
+Route::prefix('product')->middleware('auth')->group(function (){
    
-    Route::get('/{pageid??}',                 [ProductController::class , "index"])->name('product');
+    Route::get('/{pageid??}',       [ProductController::class , "index"])->name('product');
+    Route::get('/category/{category_id}/{currentPage??}',       [ProductController::class , "categoryShow"])->name('product.category');
     
     Route::post('/',                [ProductController::class , "store"])->name('product.store');
     Route::get('/{id}/edit',        [ProductController::class , "edit"])->name('product.edit');
@@ -51,13 +54,13 @@ Route::prefix('product')->group(function (){
     //Route::any('/search/', [CategoryController::class , "search"])->name('search');
     //Route::get('/search/{search}/page/{pageid}', [ProductController::class , "search"])->name('product.search.page');
     //Route::get('/page/{pageid}',    [ProductController::class , "index"])->name('product.page');
-    
-    
-    
-    
-    
+
 });
 
+// login 
+Route::get('/login',[LoginController::class , "index"])->name('login');
+Route::post('/login',[LoginController::class , "authenticate"])->name('login.auth');
+Route::get('/logout',[LoginController::class , "logout"])->name('logout');
 
 Route::get('lang/{lang}',function($lang){
     
