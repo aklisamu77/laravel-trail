@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CalcController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\VendorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -42,7 +43,10 @@ Route::prefix('category')->group(function (){
 Route::prefix('product')->middleware('auth')->group(function (){
    
     Route::get('/{pageid??}',       [ProductController::class , "index"])->name('product');
-    Route::get('/category/{category_id}/{currentPage??}',       [ProductController::class , "categoryShow"])->name('product.category');
+    Route::get('/category/{category_id}/{currentPage??}',
+                        [ProductController::class , "categoryShow"])->name('product.category');
+    Route::get('/vendor/{vendor_id}/{currentPage??}',
+                        [ProductController::class , "vendorShow"])->name('product.vendor');
     
     Route::post('/',                [ProductController::class , "store"])->name('product.store');
     Route::get('/{id}/edit',        [ProductController::class , "edit"])->name('product.edit');
@@ -56,6 +60,26 @@ Route::prefix('product')->middleware('auth')->group(function (){
     //Route::get('/page/{pageid}',    [ProductController::class , "index"])->name('product.page');
 
 });
+
+// vendor
+Route::prefix('vendor')->middleware('auth')->group(function (){
+   
+    Route::get('/{pageid??}',       [VendorController::class , "index"])->name('vendor');
+    //Route::get('/category/{category_id}/{currentPage??}',       [ProductController::class , "categoryShow"])->name('product.category');
+    
+    Route::post('/',                [VendorController::class , "store"])->name('vendor.store');
+    Route::get('/{id}/edit',        [VendorController::class , "edit"])->name('vendor.edit');
+    Route::post('/{id}/',           [VendorController::class , "update"])->name('vendor.update');
+    Route::delete('/{id}/delete',   [VendorController::class , "destroy"])->name('vendor.destroy');
+    
+    Route::get('/search/{search}/{pageid??}',  [VendorController::class , "search"])->name('vendor.search');
+    
+    //Route::any('/search/', [CategoryController::class , "search"])->name('search');
+    //Route::get('/search/{search}/page/{pageid}', [ProductController::class , "search"])->name('product.search.page');
+    //Route::get('/page/{pageid}',    [ProductController::class , "index"])->name('product.page');
+
+});
+
 
 // login 
 Route::get('/login',[LoginController::class , "index"])->name('login');

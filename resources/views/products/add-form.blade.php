@@ -71,6 +71,7 @@
                     
                 <div class="form-group">
                 <label for="Vendor">{{ __('messages.Vendor') }} </label>
+                    @section('select_vendor')
                     <select class="form-select form-control" name="vendor" aria-label="Default select example">
                         @foreach($vendors as $vendor)
                             <option value="{{ $vendor->id }}">{{ $vendor->name }}</option>
@@ -78,6 +79,7 @@
                         
                             
                     </select>
+                    @show  
                     @error('vendor')
                         <small id="helpId" class="text-danger">{{ $message }}</small>
                     @enderror

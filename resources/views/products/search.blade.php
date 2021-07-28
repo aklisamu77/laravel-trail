@@ -1,5 +1,12 @@
 @extends('products.index')
 
+@section('breadcupms')
+        <h3>
+            <a href="{{route('product')}}">Products</a> : search for "{{$search}}"
+                ( {{$products->currentPage()}} / {{ $products->lastPage() }} )
+        </h3>
+@endsection
+
 @section('paginate')
     <ul class="pagination">
       <li class="page-item">

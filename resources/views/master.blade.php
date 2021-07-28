@@ -31,6 +31,9 @@
                 <a class="nav-link" href="{{route('category')}}">Categories</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link" href="{{route('vendor')}}">Vendors</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="{{route('logout')}}">Logout</a>
             </li>
         @else

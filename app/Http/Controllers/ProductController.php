@@ -38,7 +38,9 @@ class ProductController extends Controller
     public function categoryShow($category_id,$currentPage=1){
         //
         $selected_category = Category::find($category_id);
-        $products = $selected_category->products()->orderBy('id', 'desc')->paginate(3,['*'], 'page',$currentPage);
+        $products = $selected_category->products()
+                            ->orderBy('id', 'desc')
+                            ->paginate(3,['*'], 'page',$currentPage);
         //dd(Category::find($category_id)->id);
         $categories = Category::get();
         $vendors = Vendor::get();
@@ -46,6 +48,24 @@ class ProductController extends Controller
         
         return view('products.category' , [
                                         "category"=>$selected_category,
+                                        "products"=>$products,
+                                        "categories"=>$categories,
+                                        "vendors"=>$vendors]);
+    }
+    
+    public function vendorShow($vendor_id,$currentPage=1){
+        //
+        $selected_vendor = Vendor::find($vendor_id);
+        $products = $selected_vendor->products()
+                            ->orderBy('id', 'desc')
+                            ->paginate(3,['*'], 'page',$currentPage);
+        //dd(Category::find($category_id)->id);
+        $categories = Category::get();
+        $vendors = Vendor::get();
+        //dd($vendors);
+        
+        return view('products.vendor' , [
+                                        "vendor"=>$selected_vendor,
                                         "products"=>$products,
                                         "categories"=>$categories,
                                         "vendors"=>$vendors]);
