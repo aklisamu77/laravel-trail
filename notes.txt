@@ -1,0 +1,9 @@
+set up          0
+goworking       < 25
+automate        < 100
+extend          < 300
+
+
+150 + 20 + 20 + 50 = 250
+
+600 
