@@ -99,3 +99,16 @@ Route::get('hi/{age}',function($age){
     echo 'hi your age is '.$age;    
         
 })->middleware('age');
+
+Route::get('/counter',function(){
+   return View('master',['count'=>0]); 
+});
+
+Route::get('/test',function(){
+   $arr = array(
+                /* start */
+                /* end */
+                );
+   echo '<pre>';
+   var_dump($arr);
+});

@@ -14,8 +14,10 @@ class CategoryController extends Controller
      */
     public function index($currentPage=1)
     {
-       $categories = Category::orderBy('id', 'desc')->paginate(5,['*'], 'page',$currentPage);
-        return view('categories.index' , ["cats"=>$categories]);
+       //$categories = Category::orderBy('id', 'desc')->paginate(5,['*'], 'page',$currentPage);
+       //$categories = Category::all();
+       //dd($categories);
+        return view('categories.index'/* , ["cats"=>$categories]*/);
     }
 
     /**

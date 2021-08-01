@@ -6,8 +6,8 @@
                       <p class="card-text">
                       Color : {{ $product->color }}<br>
                       Price : {{ $product->price }}<br>
-                      Category : {{ $product->category->cat_name }}<br>
-                      Vendor : {{ $product->vendor->name }}<br>
+                      Category : {{ $product->category->cat_name }} ({{$product->category->products->count()}})<br>
+                      Vendor : {{ $product->vendor->name }} ({{$product->vendor->products->count()}})<br>
                       Active : {{ $product->active }}</p>
                       <!--<a href="#" class="btn btn-primary">Go somewhere</a>-->
                       <div class="actions">
