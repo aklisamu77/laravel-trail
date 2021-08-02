@@ -15,7 +15,16 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->enum('status',['Proccing','Accepted','Pinding','Rejected','Canceled','shipped','',])
+                    ->default('Pinding');
+            $table->decimal('total_amount', 12 , 2);
+            $table->decimal('discount', 12 , 2);
+            $table->decimal('paid', 12 , 2);
+            $table->enum('payment_method',['COD','Visa','Paypal','MasterCard','Moyasser']);
             $table->timestamps();
+            
+            $table->foreignId('user_id')->constrained('users');
+            
         });
     }
 

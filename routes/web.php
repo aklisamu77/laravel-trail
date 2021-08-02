@@ -25,7 +25,7 @@ Route::get('/', function () {
 });
 
 // Category
-Route::prefix('category')->group(function (){
+Route::prefix('category')->middleware('auth')->group(function (){
    
     Route::get('/',                 [CategoryController::class , "index"])->name('category');
     //Route::any('/search/', [CategoryController::class , "search"])->name('search');

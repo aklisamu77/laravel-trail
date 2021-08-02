@@ -17,8 +17,7 @@ class VendorSeeder extends Seeder
         for ($i=0;$i<13;$i++)
             \DB::table('vendors')->insert([
                 'name' => $faker->name(),
-                
-                
+                'logo'=>'uploads\vendors\1.jpeg',
             ]);
     }
 }

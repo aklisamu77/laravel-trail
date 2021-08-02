@@ -21,4 +21,9 @@ class Product extends Model
     public function vendor(){
         return $this->belongsTo(Vendor::class);
     }
+    
+    public function order_details(){
+        return $this->hasMany(OrderDetail::class);
+    }
+    
 }
