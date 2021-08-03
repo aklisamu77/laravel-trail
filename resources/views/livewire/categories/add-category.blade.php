@@ -1,4 +1,5 @@
 <form method="post" action="{{ route('category.store') }}" wire:submit.prevent="submit">
+<h3>Add New Category</h3>
             {{--$errors--}}
             @if(session()->has('message'))
                 <div class="alert alert-success">
@@ -8,7 +9,7 @@
             @csrf
                 <div class="form-group">
                     <label for="Name">{{ __('messages.Name') }} </label>
-                    <input type="text" wire:model="name" name="name" class="form-control" value="{{old('name')}}" placeholder="Name">
+                    <input type="text" wire:model.defer="name" name="name" class="form-control" value="{{old('name')}}" placeholder="Name">
                     @error('name')
                         <small id="helpId" class="text-danger">{{ $message }}</small>
                     @enderror
@@ -16,7 +17,7 @@
                     
                 <div class="form-group">
                     <label for="Comment">{{ __('messages.Comment') }}</label>
-                        <textarea wire:model="comments" name="comments" class="form-control" placeholder="Comment ...">{{old('comments')}}</textarea>
+                        <textarea wire:model.defer="comments" name="comments" class="form-control" placeholder="Comment ...">{{old('comments')}}</textarea>
                     
                     @error('comments')
                         <small id="helpId" class="text-danger ">{{ $message }}</small>

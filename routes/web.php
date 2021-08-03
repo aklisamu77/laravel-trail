@@ -29,13 +29,13 @@ Route::prefix('category')->middleware('auth')->group(function (){
    
     Route::get('/',                 [CategoryController::class , "index"])->name('category');
     //Route::any('/search/', [CategoryController::class , "search"])->name('search');
-    Route::get('/search/{search}',  [CategoryController::class , "search"])->name('search');
+    /*Route::get('/search/{search}',  [CategoryController::class , "search"])->name('search');
     Route::get('/search/{search}/page/{pageid}', [CategoryController::class , "search"])->name('search.page');
     Route::get('/page/{pageid}',    [CategoryController::class , "index"])->name('category.page');
     Route::get('/{id}/edit',        [CategoryController::class , "edit"])->name('category.edit');
     Route::post('/',                [CategoryController::class , "store"])->name('category.store');
     Route::post('/{id}/',           [CategoryController::class , "update"])->name('category.update');
-    Route::delete('/{id}/delete',   [CategoryController::class , "destroy"])->name('category.destroy');
+    Route::delete('/{id}/delete',   [CategoryController::class , "destroy"])->name('category.destroy');*/
     
 });
 
