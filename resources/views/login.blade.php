@@ -268,6 +268,33 @@ input[type=text]:placeholder {
     border-radius: 25px;
 }
 
+
+.or-container {
+    align-items: center;
+    color: #ccc;
+    display: flex;
+    margin: 25px 30px;
+}
+
+.line-separator {
+    background-color: #ccc;
+    flex-grow: 5;
+    height: 1px;
+    
+}
+
+.or-label {
+    flex-grow: 1;
+    margin: 0 15px;
+    text-align: center
+}
+
+.btn-google {
+    color: #545454;
+    background-color: #ffffff;
+    box-shadow: 0 1px 2px 1px #ddd
+}
+
     </style>
 <div class="wrapper fadeInDown">
   <div id="formContent">
@@ -295,6 +322,33 @@ input[type=text]:placeholder {
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form>
+        
+    <div class="or-container">
+        <div class="line-separator"></div>
+        <div class="or-label">or</div>
+        <div class="line-separator"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="/auth/redirect/google">
+                    <img src="https://img.icons8.com/color/16/000000/google-logo.png"> Signup Using Google
+            </a>
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="/auth/redirect/github">
+                    <img  style=" width: 40px; " src="https://logos-world.net/wp-content/uploads/2020/11/GitHub-Logo-700x394.png"> Signup Using Github
+            </a>
+        </div>
+    </div> <br>
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="/auth/redirect/facebook">
+                    <img  style=" width: 40px; " src="https://png.pngtree.com/template/20190716/ourmid/pngtree-facebook-blue--logo-free-png-image_227903.jpg"> Signup Using Facebook
+            </a>
+        </div>
+    </div> <br>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">

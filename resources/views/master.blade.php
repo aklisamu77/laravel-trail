@@ -39,9 +39,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('vendor')}}">Vendors</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('logout')}}">Logout</a>
-            </li>
+            
         @else
             <li class="nav-item">
                 <a class="nav-link" href="{{route('login')}}">Login</a>
@@ -68,7 +66,24 @@
     </form>-->
     <a class="btn btn-outline-success m-2" href="lang/en">English</a>
     <a class="btn btn-outline-success" href="lang/ar">العربية</a>
-        
+    @if (Auth::check())
+        <!--<a href="/profile" class="dropdown-menu">
+            
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </a>-->
+        <div class="dropdown">
+            <button class="btn  dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img class="rounded-circle" style=" height: 40px; " src="{{auth()->user()->info->avatar}}">
+            </button>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+              <a class="dropdown-item" href="#">Profile ({{auth()->user()->name}})</a>
+              <a class="dropdown-item" href="{{route('logout')}}">Logout</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
+        </div>
+    @endif
   </div>
 </nav>
     <!-- navbar  -->

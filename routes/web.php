@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+use Laravel\Socialite\Facades\Socialite;
+
+
 use App\Http\Controllers\HelloController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\ProductController;
@@ -23,6 +26,14 @@ use App\Http\Controllers\VendorController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// socialize auth
+Route::get('/auth/redirect/{driver}', function ($driver) {
+    return Socialite::driver($driver)->redirect();
+});
+// social rigister or login
+Route::get('/auth/callback/{driver}', [LoginController::class , "registerOrLogin"]);
+
 
 // Category
 Route::prefix('category')->middleware('auth')->group(function (){
