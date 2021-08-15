@@ -1,6 +1,6 @@
 <div class="col-md-4 card-container">
                 <div class="card  " style="auto;">
-                    <img class="card-img-top" src="{{\Storage::url($product->logo)}}" alt="Card image cap">
+                    <img class="card-img-top" src="{{\Storage::url($product->image->url)}}" alt="Card image cap">
                     <div class="card-body">
                       <h5 class="card-title">{{$product->name}}</h5>
                       <p class="card-text">

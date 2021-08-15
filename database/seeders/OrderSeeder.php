@@ -14,22 +14,34 @@ class OrderSeeder extends Seeder
     public function run()
     {
         // `id`, `status`, `total_amount`, `discount`, `paid`, `payment_method`, `created_at`, `updated_at`, `user_id`
-        $faker = \Faker\Factory::create();
+        
+        //$order_id = 65;
+        
+        /*\DB::table('orders')->where('id', $order_id)->update([
+                //'name'          => $faker->name(),
+                'total_amount'  => $total_amount,#=> 181.843,
+                'discount'=>9,
+                'paid'=>8
+            ]);*/
         for ($i=2;$i<68;$i++){
             
-            $total_amount   = $faker->randomFloat(2,1, 300);
+            $total_products = \App\Models\OrderDetail::where('order_id','=',$i)->get();
+            $total_amount = 0;
+            for ( $j=0;$j<count($total_products);$j++){
+                $product_price = \App\Models\Product::where('id','=',$total_products[$j]['product_id'])->first()->price;
+                $total_amount  += $total_products[$j]['quantity'] * $product_price;
+                
+            }
+            
+            $total_amount   = $total_amount;
             $discount       = rand(0,intval($total_amount));
             $paid           = $total_amount - $discount;
             
-            \DB::table('orders')->insert([
+            \DB::table('orders')->where('id', $i)->update([
                 //'name'          => $faker->name(),
                 'total_amount'  => $total_amount,#=> 181.843,
-                'status'        => $faker->randomElement(['Proccing','Accepted','Pinding','Rejected','Canceled','shipped']),
-                'discount'      => $discount ,
-                'paid'          => $paid,
-                'payment_method'    => $faker->randomElement(['COD','Visa','Paypal','MasterCard','Moyasser']),
-                
-                'user_id'       => \App\Models\User::all()->random()->id,
+                'discount'=>$discount,
+                'paid'=>$paid
                 
                 
             ]);

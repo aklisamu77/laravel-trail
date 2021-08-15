@@ -39,6 +39,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('vendor')}}">Vendors</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{route('order')}}">Orders</a>
+            </li>
             
         @else
             <li class="nav-item">

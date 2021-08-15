@@ -292,7 +292,9 @@ input[type=text]:placeholder {
 .btn-google {
     color: #545454;
     background-color: #ffffff;
-    box-shadow: 0 1px 2px 1px #ddd
+    box-shadow: 0 1px 2px 1px #ddd;
+    font-size: 12px;
+    height: 40px;
 }
 
     </style>
@@ -320,7 +322,7 @@ input[type=text]:placeholder {
     @endif
       <input type="text" id="login" class="fadeIn second" name="login" placeholder="login">
       <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-      <input type="submit" class="fadeIn fourth" value="Log In">
+      <input type="submit" style="margin-bottom:0;" class="fadeIn fourth" value="Log In">
     </form>
         
     <div class="or-container">
@@ -345,10 +347,11 @@ input[type=text]:placeholder {
     <div class="row">
         <div class="col-md-10 offset-md-1">
             <a class="btn btn-lg btn-google btn-block text-uppercase btn-outline" href="/auth/redirect/facebook">
-                    <img  style=" width: 40px; " src="https://png.pngtree.com/template/20190716/ourmid/pngtree-facebook-blue--logo-free-png-image_227903.jpg"> Signup Using Facebook
+                    <img  style="width: 27px;" src="https://png.pngtree.com/template/20190716/ourmid/pngtree-facebook-blue--logo-free-png-image_227903.jpg"> Signup Using Facebook
             </a>
         </div>
     </div> <br>
+    
 
     <!-- Remind Passowrd -->
     <div id="formFooter">

@@ -11,14 +11,19 @@
         tr:hover .actions *{
             transform:translateX(0px);
         }
+        span.total {
+    text-decoration: line-through;
+    color: deeppink;
+}
     </style>
     <br>
+    @include('livewire.orders.details')
     <div class="container">
     <div class="row">
         <div class="col-md-4">
             <!-- add form -->
             @if ( $this->form == 'add' )
-                @include('livewire.categories.add-category')
+                @include('livewire.orders.add-order')
             <!-- edit form -->
             @elseif ( $this->form == 'edit' )
                 @include('livewire.categories.edit')
@@ -58,21 +63,27 @@
                   <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Comment</th>
-                    <th scope="col">Num. products</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">Total</th>
                     <th scope="col" style=" width: 25%; ">Handle</th>
                   </tr>
                 </thead>
                 <tbody>
                 
-                @forelse($this->Cats() as $category)
+                @forelse($this->Orders() as $order)
                   <tr>
-                    <th scope="row">{{($this->Cats()->currentPage()-1)*5 + $loop->iteration}}</th>
-                    <td>{{ $category->cat_name }}</td>
-                    <td>{{ $category->comments }}</td>
-                    <td><a href="{{ route('product.category',$category->id) }}">{{ count($category->products) }}</a></td>
+                    <th scope="row">{{($this->Orders()->currentPage()-1)*5 + $loop->iteration}}</th>
+                    <td>{{ $order->user->name }}</td>
+                    <td>
+                        <span class="alert py-2 alert-{{$this->status_color($order->status)}}">
+                            {{ $order->status }}
+                        </span>
+                    </td>
+                    <td>{{ $order->payment_method }}</td>
+                    <td><span class="total">{{ $order->total_amount}}</span> {{ $order->paid }}</td>
                     <td class="actions">
-                        <form method="post" wire:submit.prevent="destroy({{$category->id}})" action="#">
+                        <form method="post" wire:submit.prevent="destroy({{$order->id}})" action="#">
                             @csrf
                             @method('delete')
                            
@@ -81,7 +92,9 @@
                         
                         </form>
                         <button  class="btn btn-small btn-success"
-                            wire:click="Edit({{$category->id}})"><i class="fa fa-edit fa-lg" style=" color: white; "></i></button>
+                            wire:click="Edit({{$order->id}})"><i class="fa fa-edit fa-lg" style=" color: white; "></i></button>
+                        <button  class="btn btn-small btn-info"
+                            wire:click="Show({{$order->id}})"><i class="fa fa-eye fa-lg" style=" color: white; "></i></button>
                     </td>
                   </tr>
                 @empty
@@ -99,8 +112,8 @@
                   <li class="page-item">
                     <button class="page-link" wire:click="ChangePage(1)" tabindex="-1">First </button>
                   </li>
-                @for($i=1;$i<$this->Cats()->lastPage()+1;$i++)
-                  <li class="page-item {{ ($i==$this->Cats()->currentPage()	)?'active':''}}">
+                @for($i=1;$i<$this->Orders()->lastPage()+1;$i++)
+                  <li class="page-item {{ ($i==$this->Orders()->currentPage()	)?'active':''}}">
                     <button class="page-link" wire:click="ChangePage({{$i}})">{{$i}}</button>
                   </li>
                 @endfor
@@ -109,7 +122,7 @@
                   </li>
                   <li class="page-item"><a class="page-link" href="#">3</a></li>-->
                   <li class="page-item">
-                    <button class="page-link" wire:click="ChangePage({{$this->Cats()->lastPage()}})">Last</button>
+                    <button class="page-link" wire:click="ChangePage({{$this->Orders()->lastPage()}})">Last</button>
                   </li>
                 </ul>
                 @show

@@ -47,5 +47,16 @@ return [
     'client_secret' => env('FACEBOOK_CLIENT_SECRET'),
     'redirect' => 'http://localhost:8000/auth/callback/facebook',
     ],
-
+    
+    'twitter' => [
+    'client_id' => env('TWITTER_CLIENT_ID'),
+    'client_secret' => env('TWITTER_CLIENT_SECRET'),
+    'redirect' => 'http://localhost:8000/auth/callback/twitter',
+    ],
+    
+    'instagram' => [
+    'client_id' => env('INSTAGRAM_CLIENT_ID'),
+    'client_secret' => env('INSTAGRAM_CLIENT_SECRET'),
+    'redirect' => 'https://localhost:8000/auth/callback/instagram',
+    ],
 ];

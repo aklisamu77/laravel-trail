@@ -10,7 +10,7 @@ use Session;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Vendor;
-
+use App\Models\Image;
 
 class ProductController extends Controller
 {
@@ -26,7 +26,8 @@ class ProductController extends Controller
         $products = Product::orderBy('id', 'desc')->paginate(12,['*'], 'page',$currentPage);
         $categories = Category::get();
         $vendors = Vendor::get();
-        //dd($vendors);
+        
+        //dd(Product::find(2)->image->url);
         
         return view('products.index' , [
                                         "page_route"=>'product',

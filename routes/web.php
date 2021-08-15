@@ -12,6 +12,8 @@ use App\Http\Controllers\CalcController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\VendorController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,6 +49,13 @@ Route::prefix('category')->middleware('auth')->group(function (){
     Route::post('/',                [CategoryController::class , "store"])->name('category.store');
     Route::post('/{id}/',           [CategoryController::class , "update"])->name('category.update');
     Route::delete('/{id}/delete',   [CategoryController::class , "destroy"])->name('category.destroy');*/
+    
+});
+
+// Category
+Route::prefix('order')->middleware('auth')->group(function (){
+   
+    Route::get('/',                 [OrderController::class , "index"])->name('order');
     
 });
 

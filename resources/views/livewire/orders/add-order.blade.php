@@ -1,5 +1,5 @@
 <form method="post" action="#" wire:submit.prevent="submit">
-<h3>Add New Category</h3>
+<h3>Add New Order</h3>
             {{--$errors--}}
             @if(session()->has('message'))
                 <div class="alert alert-success">
